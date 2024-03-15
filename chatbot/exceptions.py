@@ -14,6 +14,10 @@ class CommandAddContactNotFormatted(Exception):
     """" Add contact command error format """
 
 
+class CommandUpdateContactNotFormatted(Exception):
+    """" Update contact command error format """
+
+
 class ContactNotFound(Exception):
     """" Contact not found """
 

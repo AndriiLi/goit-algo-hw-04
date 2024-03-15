@@ -4,7 +4,7 @@ from chatbot.command_parser import parse_input
 from chatbot.command_handlers import add_contact, change_phone, show_phone, all_contacts, export_contacts, \
     import_contacts
 from chatbot.exceptions import CantParseInputCommand, CommandAddContactNotFormatted, PhoneMustBeDigits, \
-    ContactAlreadyExists, ContactNotFound, WrongPathToDbFile
+    ContactAlreadyExists, ContactNotFound, WrongPathToDbFile, CommandUpdateContactNotFormatted
 from func.functions import print_colored
 
 
@@ -42,6 +42,8 @@ def run_chat_bot() -> None:
             print_colored(color=Fore.RED, message="Invalid command.")
         except CommandAddContactNotFormatted:
             print_colored(color=Fore.RED, message="Invalid command for add contact.")
+        except CommandUpdateContactNotFormatted:
+            print_colored(color=Fore.RED, message="Invalid command for update contact.")
         except PhoneMustBeDigits:
             print_colored(color=Fore.RED, message="Phone of contact must have digits")
         except ContactAlreadyExists:

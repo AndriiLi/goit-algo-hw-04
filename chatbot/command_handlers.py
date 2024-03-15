@@ -4,7 +4,7 @@ from colorama import Fore
 
 from chatbot.constants import DB_PATH
 from chatbot.exceptions import PhoneMustBeDigits, ContactAlreadyExists, CommandAddContactNotFormatted, ContactNotFound, \
-    WrongPathToDbFile
+    WrongPathToDbFile, CommandUpdateContactNotFormatted
 from func.functions import read_file, colored_string, print_colored
 
 
@@ -44,8 +44,16 @@ def show_phone(args: tuple[str], contacts: dict[str, str]) -> str:
 
 def change_phone(args: tuple[str, str], contacts: dict[str, str]) -> str:
     try:
+
+        if len(args) < 2:
+            raise CommandUpdateContactNotFormatted
+
         name = args[0]
         phone = args[1]
+
+        if not phone.isdigit():
+            raise PhoneMustBeDigits
+
         contacts[name] = phone
         return colored_string(message="Contact updated.")
 
